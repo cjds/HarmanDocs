@@ -42,6 +42,8 @@ public class HKWirelessController
    * This is called when the Device state is updated from starting up, shutting down etc.
    * @CARL I guess the params refer to the old state and the new but I can;t
    * tell why they would be two different types
+   * @param  paramLong This is the long that refers to a particular device
+   * @param paramInt An integer referring to the current state
    */
   public void callbackDeviceStateUpdated(long paramLong, int paramInt) {
     a.a("callbackDeviceStateUpdated");
@@ -85,7 +87,7 @@ public class HKWirelessController
   
   /**
    * @CARL not sure what callback this is supposed to be
-   * @param The time which is currently playing
+   * @param paramInt The time which is currently playing
    */
   public void callbackPlaybackTimeChanged(int paramInt) {
     a.a("callbackPlaybackTimeChanged :" + paramInt);
@@ -141,7 +143,7 @@ public class HKWirelessController
    * This method allows you to add a device to the session. The ID can be acquired from
    * the DeviceObj. Once a device is in a session, the play and pause commands will work on it
    * @CARL I'm assuming this is true
-   * @param The long ID of the device that you are adding to the session
+   * @param paramLong The long ID of the device that you are adding to the session
    * @return It returns whether the device was successfully added or not
    */
   public native boolean AddDeviceToSession(long paramLong);
@@ -149,7 +151,7 @@ public class HKWirelessController
   /**
    * This method allows you to remove a device from the sesison. The ID can be acquired from 
    * the DeviceObj.
-   * @param The long ID of the device you are removing 
+   * @param paramLong The long ID of the device you are removing 
    * @return It returns true if the device is successfully removed
    */
   public native boolean RemoveDeviceFromSession(long paramLong);
@@ -163,6 +165,7 @@ public class HKWirelessController
   /**
    * Counts the number of devices in a particular group
    * @CARL What is a group index and how can I find it 
+   * @param paramInt The index of the device
    * @return the number of devices in a group
    */
   public native int GetDeviceCountInGroupIndex(int paramInt);
@@ -175,39 +178,42 @@ public class HKWirelessController
   
   /**
    * @CARL Not A CLUE. No use case or method presented anywhere. What is Table anyway
+   * @param paramInt1 no clues
+   * @param paramInt2 no idea
    */
   public native DeviceObj GetDeviceInfoFromTable(int paramInt1, int paramInt2);
   
    /**
     * Returns all the information about a device based on its index
+    * @param paramInt The index of the device
    * @CARL What is an index. How many are there. Where can I get a list of indices
    */
   public native DeviceObj GetDeviceInfoByIndex(int paramInt);
   
   /**
    * Get a DeviceObj of the device by specifying its Long ID
-   * @param The ID of the particular device
+   * @param paramLong The ID of the particular device
    * @return A DeviceObj with list 
    */ 
   public native DeviceObj FindDeviceFromList(long paramLong);
 
   /**
    * Get a GroupObj of the group in which a device is in
-   * @param The ID of the particular device
+   * @param paramLong The ID of the particular device
    * @return The GroupObj of a particular group
    */ 
   public native GroupObj FindGroupWithDeviceId(long paramLong);
 
   /**
    * @CARL I have no idea what the index means as usual
-   * @param the index of the group
+   * @param paramInt the index of the group
    * @return The GroupObj of that particular group
    */
   public native GroupObj GetGroupByIndex(int paramInt);
 
   /**
    * Given the long ID of a group, it returns a device 
-   * @param The group id of the device 
+   * @param paramLong The group id of the device 
    * @return The GroupObj of the group
    */
   public native GroupObj GetGroupById(long paramLong);
@@ -229,7 +235,7 @@ public class HKWirelessController
 
   /**
    * A group name is found for the object
-   * @param  The index which responds to a group 
+   * @param  paramInt The index which responds to a group 
    * @return The name of the group eg. Living Room, Bathroom etc.
    */
   public native String GetGroupNameByIndex(int paramInt);
@@ -238,22 +244,22 @@ public class HKWirelessController
    * Get the Long group ID from the Index 
    * @CARL maybe it should be the other way around, how do you know what 
    * devices to use
-   * @param  The index which responds to a group
+   * @param paramInt The index which responds to a group
    * @return The Long ID of a particular group
    */
   public native long GetGroupIdByIndex(int paramInt);
 
 /**
  * Give a name to a particular Device
- * @param The long ID of the device to be given the name
- * @param The name of the device
+ * @param paramLong The long ID of the device to be given the name
+ * @param paramString The name of the device
  */
   public native void SetDeviceName(long paramLong, String paramString);
 
   /**
    * Set the name for the group
-   * @param The long ID of the group
-   * @param The String is the group name that it will be 
+   * @param paramLong The long ID of the group
+   * @param paramString The String is the group name that it will be 
    */
   public native void SetDeviceGroupName(long paramLong, String paramString);
 
@@ -276,13 +282,13 @@ public class HKWirelessController
 
   /**
    * @CARL Not really sure what this does
-   * @param The ID of the device
+   * @param paramLong The ID of the device
    */
   public native void RefreshDeviceWiFiSignal(long paramLong);
 
   /**
-   * Returns the signal strength of the WiFi signal
-   * @param NOT REALLY SURE @CARL
+   * Returns  the signal strength of the WiFi signal
+   * @param paramInt NOT REALLY SURE @CARL
    * @return NOT REALLY SURE @CARL
    */
   public native int GetWifiSignalStrengthType(int paramInt);
@@ -293,4 +299,4 @@ public class HKWirelessController
 /* Location:              C:\Users\Carl Saldanha\Documents\projects\HARMAN\lib\HKWirelessHD.jar!\com\harman\hkwirelessapi\HKWirelessController.class
  * Java compiler version: 7 (51.0)
  * JD-Core Version:       0.7.1
- */2                                               
+ */                                           

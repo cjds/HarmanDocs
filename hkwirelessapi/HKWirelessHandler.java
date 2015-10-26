@@ -1,4 +1,4 @@
-pacfkage com.harman.hkwirelessapi;
+package com.harman.hkwirelessapi;
 
 import android.os.Build.VERSION;
 
@@ -56,7 +56,7 @@ public class HKWirelessHandler
 
   /**
    * This is the method that allows you to add an HK Wireless listener to the controller
-   * @param Attach a new HKWireless Listener to Listen for changes
+   * @param HKWirelessListener Attach a new HKWireless Listener to Listen for changes
    */
   public void registerHKWirelessControllerListener(HKWirelessListener paramHKWirelessListener) {
     this.m_wireless.a(paramHKWirelessListener);
@@ -91,7 +91,7 @@ public class HKWirelessHandler
    * This method allows you to add a device to the session. The ID can be acquired from
    * the DeviceObj. Once a device is in a session, the play and pause commands will work on it
    * @CARL I'm assuming this is true
-   * @param The long ID of the device that you are adding to the session
+   * @param paramLong The long ID of the device that you are adding to the session
    * @return It returns whether the device was successfully added or not
    */
    public boolean addDeviceToSession(long paramLong) {
@@ -101,7 +101,7 @@ public class HKWirelessHandler
   /**
    * This method allows you to remove a device from the sesison. The ID can be acquired from 
    * the DeviceObj.
-   * @param The long ID of the device you are removing 
+   * @param paramLong The long ID of the device you are removing 
    * @return It returns true if the device is successfully removed
    */
   public boolean removeDeviceFromSession(long paramLong) { return this.m_wireless.RemoveDeviceFromSession(paramLong); }
@@ -118,6 +118,7 @@ public class HKWirelessHandler
   /**
    * Counts the number of devices in a particular group
    * @CARL What is a group index and how can I find it 
+   * @param paramInt The index of the group
    * @return the number of devices in a group
    */
   public int getDeviceCountInGroupIndex(int paramInt) {
@@ -134,6 +135,9 @@ public class HKWirelessHandler
   
   /**
    * @CARL Not A CLUE. No use case or method presented anywhere. What is Table anyway
+   * @param paramInt1 no clues
+   * @param paramInt2 no idea
+   * @return the DeviceObj object of the speaker
    */
   public DeviceObj getDeviceInfoFromTable(int paramInt1, int paramInt2) {
     return this.m_wireless.GetDeviceInfoFromTable(paramInt1, paramInt2);
@@ -142,6 +146,8 @@ public class HKWirelessHandler
    /**
     * Returns all the information about a device based on its index
    * @CARL What is an index. How many are there. Where can I get a list of indices
+   * @param paramInt An index
+   * @return  The DeviceObj object of the speaker
    */
   public DeviceObj getDeviceInfoByIndex(int paramInt) {
     return this.m_wireless.GetDeviceInfoByIndex(paramInt);
@@ -149,7 +155,7 @@ public class HKWirelessHandler
   
   /**
    * Get a GroupObj of the group in which a device is in
-   * @param The ID of the particular device
+   * @param paramLong The ID of the particular device
    * @return The GroupObj of a particular group
    */   
   public GroupObj findDeviceGroupWithDeviceId(long paramLong) {
@@ -158,7 +164,7 @@ public class HKWirelessHandler
   
 /**
    * Get a DeviceObj of the device by specifying its Long ID
-   * @param The ID of the particular device
+   * @param paramLong The ID of the particular device
    * @return A DeviceObj with list 
    */ 
   public DeviceObj findDeviceFromList(long paramLong) {
@@ -185,7 +191,7 @@ public class HKWirelessHandler
   }
    /**
    * @CARL I have no idea what the index means as usual
-   * @param the index of the group
+   * @param paramInt the index of the group
    * @return The GroupObj of that particular group
    */ 
   public GroupObj getDeviceGroupByIndex(int paramInt) {
@@ -193,7 +199,7 @@ public class HKWirelessHandler
   }
    /**
    * Given the long ID of a group, it returns a device 
-   * @param The group id of the device 
+   * @param paramLong The group id of the device 
    * @return The GroupObj of the group
    */
  
@@ -203,7 +209,7 @@ public class HKWirelessHandler
   
     /**
    * A group name is found for the object
-   * @param  The index which responds to a group 
+   * @param  paramInt The index which responds to a group 
    * @return The name of the group eg. Living Room, Bathroom etc.
    */
   public String getDeviceGroupNameByIndex(int paramInt) {
@@ -215,7 +221,7 @@ public class HKWirelessHandler
    * Get the Long group ID from the Index 
    * @CARL maybe it should be the other way around, how do you know what 
    * devices to use
-   * @param  The index which responds to a group
+   * @param  paramInt The index which responds to a group
    * @return The Long ID of a particular group
    */
   public long getDeviceGroupIdByIndex(int paramInt) {
@@ -224,8 +230,8 @@ public class HKWirelessHandler
   
 /**
  * Give a name to a particular Device
- * @param The long ID of the device to be given the name
- * @param The name of the device
+ * @param paramLong The long ID of the device to be given the name
+ * @param paramString The name of the device
  */
  public void setDeviceName(long paramLong, String paramString) {
     this.m_wireless.SetDeviceName(paramLong, paramString);
@@ -233,8 +239,8 @@ public class HKWirelessHandler
   
   /**
    * Set the name for the group
-   * @param The long ID of the group
-   * @param The String is the group name that it will be 
+   * @param paramLong The long ID of the group
+   * @param paramString The String is the group name that it will be 
    */
   public void setDeviceGroupName(long paramLong, String paramString) {
     this.m_wireless.SetDeviceGroupName(paramLong, paramString);
@@ -242,6 +248,8 @@ public class HKWirelessHandler
   
   /**
    * @CARL I have NO idea what this does or what Params it takes
+   * @param paramLong The long device ID
+   * @param paramInt No idea
    */
   public void setDeviceRole(long paramLong, int paramInt) {
     this.m_wireless.SetDeviceRole(paramLong, paramInt);
@@ -266,7 +274,7 @@ public class HKWirelessHandler
   
   /**
    * @CARL Not really sure what this does
-   * @param The ID of the device
+   * @param paramLong The ID of the device
    */
   public void refreshDeviceWiFiSignal(long paramLong) {
     this.m_wireless.RefreshDeviceWiFiSignal(paramLong);
@@ -274,7 +282,7 @@ public class HKWirelessHandler
   
     /**
    * Returns the signal strength of the WiFi signal
-   * @param NOT REALLY SURE @CARL
+   * @param paramInt NOT REALLY SURE @CARL
    * @return NOT REALLY SURE @CARL
    */
   public HKWifiSingalStrength getWifiSignalStrengthType(int paramInt) {
